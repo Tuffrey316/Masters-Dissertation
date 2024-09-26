@@ -1,0 +1,38 @@
+proc template;
+define statgraph cluster_comp;
+begingraph / collation=binary;
+layout overlay / yaxisopts=(labelFitPolicy=Split) y2axisopts=(labelFitPolicy=Split);
+   ScatterPlot X='Speed_Mean'n Y='RPM_Mean'n / subpixel=off primary=true Group='CLUSTER'n LegendLabel="RPM_Mean" NAME="SCATTER" rolename=(Label=circ_corner) tip=(X Y Label);
+   DiscreteLegend "SCATTER"/ title="CLUSTER";
+endlayout;
+endgraph;
+end;
+run;
+
+title "Ward Clustering: Mean Corner Speed by Mean Corner RPM";
+proc sgrender data=diss.ward_corners template=cluster_comp;
+run;
+title "McQuitty Clustering: Mean Corner Speed by Mean Corner RPM";
+proc sgrender data=diss.mcquitty_corners template=cluster_comp;
+run;
+title "EML Clustering: Mean Corner Speed by Mean Corner RPM";
+proc sgrender data=diss.eml_corners template=cluster_comp;
+run;
+title "Flexible Clustering: Mean Corner Speed by Mean Corner RPM";
+proc sgrender data=diss.flex_corners template=cluster_comp;
+run;
+title "Complete Clustering: Mean Corner Speed by Mean Corner RPM";
+proc sgrender data=diss.comp_corners template=cluster_comp;
+run;
+title "Centroid Clustering: Mean Corner Speed by Mean Corner RPM";
+proc sgrender data=diss.cent_corners template=cluster_comp;
+run;
+title "Single Linkage Clustering: Mean Corner Speed by Mean Corner RPM";
+proc sgrender data=diss.single_corners template=cluster_comp;
+run;
+title "Average Clustering: Mean Corner Speed by Mean Corner RPM";
+proc sgrender data=diss.avg_corners template=cluster_comp;
+run;
+title;
+
+*USE CENTROID CLUSTERS?;
